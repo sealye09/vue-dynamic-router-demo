@@ -1,12 +1,11 @@
-<script lang="ts" setup>
+<script setup>
 import { inject } from "vue";
 import { useRouter } from "vue-router";
 import { addRoutesByRole, removeAllRoutes, addBasicRoutes } from "../router";
 
-const router = useRouter();
-const myRoutes = inject<any>("myRoutes");
+const myRoutes = inject("myRoutes");
 
-const loginHandle = (role: string) => {
+const loginHandle = (role) => {
   myRoutes.value = addRoutesByRole(role);
 };
 
@@ -37,7 +36,7 @@ const logOut = () => {
         }
       "
     >
-    User Login
+      User Login
     </button>
     <button
       class="px-4 py-2 rounded-md shadow bg-red-700"
