@@ -1,7 +1,9 @@
 <script setup>
-import { routes } from "./router";
+import { ref } from "vue";
+import { routes, addRoutesByRole } from "./router";
 
-console.log(routes);
+const myRoutes = ref(addRoutesByRole('admin'));
+
 </script>
 
 <template>
@@ -10,10 +12,10 @@ console.log(routes);
   >
     <div class="flex gap-4">
       <router-link
-        v-for="item in routes"
+        v-for="item in myRoutes"
         :key="item.name"
         :to="{ name: item.name }"
-        >【{{ item.meta.label }}】
+        >[{{ item.meta.label }}]
       </router-link>
     </div>
     <router-view></router-view>
