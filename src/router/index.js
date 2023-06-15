@@ -190,6 +190,22 @@ export function addRoutesByRole(role) {
   return [...routes, ...filteredDynamicRoutes];
 }
 
+export function removeAllRoutes() {
+  const routes = router.getRoutes();
+  routes.forEach((route) => {
+    router.removeRoute(route.name);
+  });
+  return routes;
+}
+
+export function addBasicRoutes() {
+  routes.forEach((route) => {
+    router.addRoute(route);
+  });
+
+  return routes;
+}
+
 const router = createRouter({
   history: createWebHistory(),
   routes,

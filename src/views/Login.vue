@@ -1,7 +1,56 @@
-<script setup></script>
+<script lang="ts" setup>
+import { inject } from "vue";
+import { useRouter } from "vue-router";
+import { addRoutesByRole, removeAllRoutes, addBasicRoutes } from "../router";
 
+const router = useRouter();
+const myRoutes = inject<any>("myRoutes");
+
+const loginHandle = (role: string) => {
+  myRoutes.value = addRoutesByRole(role);
+};
+
+const logOut = () => {
+  removeAllRoutes();
+  myRoutes.value = addBasicRoutes();
+};
+</script>
 <template>
-  <div class="text-center">Login</div>
+  <div class="flex gap-4 justify-center items-center">
+    <button
+      class="px-4 py-2 rounded-md shadow bg-yellow-700"
+      @click="
+        () => {
+          logOut();
+          loginHandle('admin');
+        }
+      "
+    >
+      Admin Login
+    </button>
+    <button
+      class="px-4 py-2 rounded-md shadow bg-yellow-700"
+      @click="
+        () => {
+          logOut();
+          loginHandle('user');
+        }
+      "
+    >
+    User Login
+    </button>
+    <button
+      class="px-4 py-2 rounded-md shadow bg-red-700"
+      @click="
+        () => {
+          logOut();
+        }
+      "
+    >
+      Logout
+    </button>
+  </div>
 </template>
 
 <style scoped></style>
+```

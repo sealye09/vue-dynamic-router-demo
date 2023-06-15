@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from "vue";
-import { routes, addRoutesByRole } from "./router";
+import { provide, ref } from "vue";
+import { routes } from "./router";
 
-const myRoutes = ref(addRoutesByRole('admin'));
-
+const myRoutes = ref(routes);
+provide("myRoutes", myRoutes);
 </script>
 
 <template>
   <div
-    class="w-full h-full bg-gray-800 text-gray-200 flex gap-8 flex-col justify-center items-center"
+    class="w-full h-full bg-gray-800 text-gray-200 flex gap-8 flex-col items-center pt-20"
   >
     <div class="flex gap-4">
       <router-link
